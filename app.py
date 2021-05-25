@@ -4,7 +4,7 @@ from elasticsearch import Elasticsearch
 from flask import Flask, url_for, render_template, request
 import psql
 from flask_cors import CORS
-import pandas as pd
+# import pandas as pd
 from datetime import date
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
@@ -90,19 +90,19 @@ def add_document():
         return "Please send POST request"
 
 
-@app.route("/add_documents", methods=['GET'])
-def add_documents():
-    df = pd.read_csv("./literatures.csv", sep=',', header=0)
-    values = json.loads(request.get_data(as_text=True))
-    df.fillna(value=values, inplace=True)
-    for i in df.index.to_list():
-        p = df.loc[i, :].to_dict()
-        id_ = p['PMID']
-        if id_ == '-1111':
-            es.index(index="literatures", body=p)
-        else:
-            es.index(index="literatures", body=p, id=id_)
-    return "success"
+# @app.route("/add_documents", methods=['GET'])
+# def add_documents():
+#     df = pd.read_csv("./literatures.csv", sep=',', header=0)
+#     values = json.loads(request.get_data(as_text=True))
+#     df.fillna(value=values, inplace=True)
+#     for i in df.index.to_list():
+#         p = df.loc[i, :].to_dict()
+#         id_ = p['PMID']
+#         if id_ == '-1111':
+#             es.index(index="literatures", body=p)
+#         else:
+#             es.index(index="literatures", body=p, id=id_)
+#     return "success"
 
 
 @app.route("/delete_index", methods=["DELETE"])
