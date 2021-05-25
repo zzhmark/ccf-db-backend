@@ -30,8 +30,8 @@ cors = CORS(app)
 
 es = Elasticsearch([{"host": "127.0.0.1", "port": 9200}])
 
-mongo_static = PyMongo(app, uri="mongodb://localhost:27017/ccf_static")
-mongo_main = PyMongo(app, uri="mongodb://localhost:27017/ccf_main")
+mongo_static = PyMongo(app, uri="mongodb://127.0.0.1:27017/ccf_static")
+mongo_main = PyMongo(app, uri="mongodb://127.0.0.1:27017/ccf_main")
 
 
 # es
