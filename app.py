@@ -2,7 +2,7 @@ import json
 
 from elasticsearch import Elasticsearch
 from flask import Flask, url_for, render_template, request
-import psql
+# import psql
 from flask_cors import CORS
 # import pandas as pd
 from datetime import date
