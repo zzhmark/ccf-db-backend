@@ -10,11 +10,12 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from bson import binary
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
 #
-# client = MongoClient('127.0.0.1', 27017) #连接mongodb
-# db = client.photo #连接对应数据库
+# client = MongoClient('mongo', 27017) #连接mongodb
+# db_static = client.ccf_static #连接对应数据库
+# db_main = client.ccf_main
 # image_collection = db.images
 # data = requests.get(dic["photo_url"], timeout=10).content
 # if not image_collection.find_one({"photo_url":dic["photo_url"]})
@@ -28,11 +29,10 @@ from pymongo import MongoClient
 app = Flask(__name__)
 cors = CORS(app)
 
-es = Elasticsearch([{"host": "127.0.0.1", "port": 9200}])
+es = Elasticsearch([{"host": "elasticsearch", "port": 9200}])
 
-mongo_static = PyMongo(app, uri="mongodb://127.0.0.1:27017/ccf_static")
-mongo_main = PyMongo(app, uri="mongodb://127.0.0.1:27017/ccf_main")
-
+mongo_static = PyMongo(app, uri="mongodb://mongo:27017/ccf_static")
+mongo_main = PyMongo(app, uri="mongodb://mongo:27017/ccf_main")
 
 # es
 
